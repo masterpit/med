@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class view extends Model
 {
     use HasFactory;
+    public function Posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

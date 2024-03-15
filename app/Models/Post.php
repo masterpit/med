@@ -12,10 +12,15 @@ class Post extends Model
     protected $fillable = [
         'category_id',
         'name',
+        'view_id',
         'text'
     ];
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+    public function view()
+    {
+        return $this->belongsTo(view::class);
     }
 }

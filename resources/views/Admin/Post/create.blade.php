@@ -105,7 +105,25 @@
                         <label for="category">категория поста</label>
                         <select class="form-control" id="category" name="category" aria-label="Default select example">
                             @foreach ($Categories as $Category)
-                                <option value="{{ $Category->id }}">{{ $Category->title }}</option>
+                            @if (isset($Post)&&($Post->category_id == $Category->id))
+                            <option selected value="{{ $Category->id }}">{{ $Category->title }}</option>
+                            @else
+                            <option value="{{ $Category->id }}">{{ $Category->title }}</option>
+                            @endif
+                                
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="view">публикация на странице</label>
+                        <select class="form-control" id="view" name="view" aria-label="Default select example">
+                            @foreach ($views as $view)
+                                @if (isset($Post)&&($Post->view_id == $view->id))
+                                <option selected value="{{ $view->id }}">{{ $view->name }}</option>
+                                @else
+                                <option value="{{ $view->id }}">{{ $view->name }}</option>
+                                @endif
+                                
                             @endforeach
                         </select>
                     </div>

@@ -6,6 +6,8 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\relation_view;
+use App\Models\view;
 
 class PostController extends Controller
 {
@@ -29,7 +31,8 @@ class PostController extends Controller
     public function create()
     {
         $Categories = Category::all();
-        return view('Admin.Post.create',compact('Categories'));
+        $views = view::all();
+        return view('Admin.Post.create',compact('Categories','views'));
     }
 
     /**
@@ -43,8 +46,10 @@ class PostController extends Controller
         $Post = new Post();
         $Post->name = $request->name;
         $Post->text = $request->text;
+        $Post->view_id = $request->view;
         $Post->category_id = $request->category;
         $Post->save();
+        
         return redirect()->route('Post.index');
     }
 
@@ -68,9 +73,10 @@ class PostController extends Controller
      */
     public function edit($post)
     {
-        $Post = Post::find($post);
+        $Post = Post::find($post);        
+        $views = view::all();
         $Categories = Category::all();
-        return view('Admin.Post.create',compact('Post','Categories'));
+        return view('Admin.Post.create',compact('Post','Categories','views'));
     }
 
     /**
@@ -86,6 +92,7 @@ class PostController extends Controller
         $Post->update([
             'name' => $request->name,
             'text' => $request->text,
+            'view_id' => $request->view,
             'category_id' => $request->category
         ]);
         return redirect()->route('Post.index');

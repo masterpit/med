@@ -9,16 +9,17 @@ use Illuminate\Http\Request;
 class publicController extends Controller
 {
     public function about(){
-        $about = relation_view::where('view_id','1')->first();        
-        $post = Post::find($about->Post_id);
-        
-        return view('tasks.about',compact('post'));
+               
+        $posts = Post::where('view_id','4')->get();
+        //dd( $about->Post_id);
+        return view('tasks.about',compact('posts'));
     }
     public function specialists(){
         
     }
     public function services(){
-        return view('tasks.services');
+        $posts = Post::where('view_id','2')->get();
+        return view('tasks.services',compact('posts'));
     }
     public function for_patient(){
         return view('tasks.for_patient');

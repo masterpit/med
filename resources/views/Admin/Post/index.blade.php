@@ -17,7 +17,7 @@
                     категория
                 </th>
                 <th style="width: 8%" class="text-center">
-                    Статус
+                    опубликован на странице
                 </th>
                 <th style="width: 30%">
                 </th>
@@ -43,8 +43,8 @@
                         <td>
                             {{ $Post->category->title }}
                         </td>
-                        <td class="project-state">
-                            <span class="badge badge-success">Success</span>
+                        <td class="project-state">                            
+                            <span class="badge badge-success"> {{ $Post->view->name }}</span>
                         </td>
                         <td class="project-actions text-right">
                             <a class="btn btn-primary btn-sm" href="{{route('Post.show',$Post)}}">
